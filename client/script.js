@@ -128,7 +128,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 console.error("Sunucu hatası:", data);
 
                 Toastify({
-                    text: "🚫 Sipariş gönderilemedi!",
+                    text: `🚫 Sipariş gönderilemedi! 
+                    ${data.details}`,
                     duration: 3000,
                     gravity: "top",
                     position: "right",
