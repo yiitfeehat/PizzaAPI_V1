@@ -1,23 +1,36 @@
 document.addEventListener("DOMContentLoaded", async () => {
+
+    // ─────────────────────────────────────────────────────────────
+    // 🌐 API URL ve Global Değişkenler
+    // ─────────────────────────────────────────────────────────────
+    const URL = "https://pizzaapi-v1.onrender.com";
+    let basePrice = 0;
+
+    // ─────────────────────────────────────────────────────────────
+    // 📌 DOM Element Seçimleri
+    // ─────────────────────────────────────────────────────────────
     const pizzaSelect = document.getElementById("pizzaId");
     const sizeSelect = document.getElementById("size");
     const priceInput = document.getElementById("price");
     const quantityInput = document.getElementById("quantity");
     const totalPriceInput = document.getElementById("totalPrice");
+    const form = document.getElementById("pizzaOrderForm");
 
-    let basePrice = 0;
+    // ─────────────────────────────────────────────────────────────
+    // ✅ Başarılı Sipariş Modal Fonksiyonu
+    // ─────────────────────────────────────────────────────────────
     function showSuccessModal() {
         const modal = document.getElementById("successModal");
         modal.classList.remove("hidden");
 
         setTimeout(() => {
             modal.classList.add("hidden");
-        }, 3000); // 2 saniye sonra kapanır
+        }, 3000);
     }
 
-
-    const URL = "https://pizzaapi-v1.onrender.com"
-    // 🍕 Pizza listesini API'den çek
+    // ─────────────────────────────────────────────────────────────
+    // 🍕 Pizza Listesini API'den Çek ve Select İçine Ekle
+    // ─────────────────────────────────────────────────────────────
     try {
         const response = await fetch(`${URL}/pizzas`);
         if (!response.ok) throw new Error("Pizza listesi alınamadı.");
@@ -32,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     } catch (error) {
         console.error("Hata:", error.message);
+
         Toastify({
             text: "Pizza listesi yüklenemedi!",
             duration: 3000,
@@ -42,16 +56,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }).showToast();
     }
 
-    // 🎯 Pizza seçildiğinde fiyatı güncelle
-    pizzaSelect.addEventListener("change", () => {
-        const selectedOption = pizzaSelect.options[pizzaSelect.selectedIndex];
-        basePrice = parseFloat(selectedOption.dataset.price) || 0;
-        updatePrice();
-    });
-
-    sizeSelect.addEventListener("change", updatePrice);
-    quantityInput.addEventListener("input", updatePrice);
-
+    // ─────────────────────────────────────────────────────────────
+    // 💰 Fiyat Hesaplama Fonksiyonu
+    // ─────────────────────────────────────────────────────────────
     function updatePrice() {
         const size = sizeSelect.value;
         const quantity = parseInt(quantityInput.value) || 1;
@@ -68,8 +75,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         totalPriceInput.value = totalPrice;
     }
 
-    // ✅ Form gönderimi
-    document.getElementById("pizzaOrderForm").addEventListener("submit", async function (e) {
+    // ─────────────────────────────────────────────────────────────
+    // 🎯 Event Listener'lar: Seçimler ve Inputlar
+    // ─────────────────────────────────────────────────────────────
+    pizzaSelect.addEventListener("change", () => {
+        const selectedOption = pizzaSelect.options[pizzaSelect.selectedIndex];
+        basePrice = parseFloat(selectedOption.dataset.price) || 0;
+        updatePrice();
+    });
+
+    sizeSelect.addEventListener("change", updatePrice);
+    quantityInput.addEventListener("input", updatePrice);
+
+    // ─────────────────────────────────────────────────────────────
+    // 📝 Sipariş Formu Submit Olayı
+    // ─────────────────────────────────────────────────────────────
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const quantity = parseInt(quantityInput.value);
@@ -102,8 +123,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (!data.error) {
                 showSuccessModal();
-                document.getElementById("pizzaOrderForm").reset();
+                form.reset();
             } else {
+                console.error("Sunucu hatası:", data);
+
                 Toastify({
                     text: "🚫 Sipariş gönderilemedi!",
                     duration: 3000,
@@ -112,10 +135,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     backgroundColor: "#dc3545",
                     close: true,
                 }).showToast();
-                console.error("Sunucu hatası:", data);
             }
         } catch (err) {
             console.error("İstek hatası:", err);
+
             Toastify({
                 text: "❌ Sunucuya ulaşılamadı!",
                 duration: 3000,
@@ -126,5 +149,5 @@ document.addEventListener("DOMContentLoaded", async () => {
             }).showToast();
         }
     });
-});
 
+});
