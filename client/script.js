@@ -15,9 +15,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }, 3000); // 2 saniye sonra kapanır
     }
 
+
+    const URL = "https://pizzaapi-v1.onrender.com"
     // 🍕 Pizza listesini API'den çek
     try {
-        const response = await fetch("https://pizzaapi-v1.onrender.com/pizzas");
+        const response = await fetch(`${URL}/pizzas`);
         if (!response.ok) throw new Error("Pizza listesi alınamadı.");
         const pizzas = await response.json();
 
@@ -88,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/orders", {
+            const response = await fetch(`${URL}/orders`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
