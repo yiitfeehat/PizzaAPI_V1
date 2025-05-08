@@ -12,7 +12,8 @@
 */
 const express = require('express')
 const app = express()
-
+const fs = require('fs');
+const path = require('path');
 /* ------------------------------------------------------- */
 // Required Modules:
 
@@ -25,6 +26,12 @@ const PORT = process.env?.PORT || 8000
 
 app.set('query parser', "extended");
 
+/* -------------------------------------------------------------------------- */
+// Logs klasörünü kontrol et ve yoksa oluştur
+const logsDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+}
 
 /* ------------------------------------------------------- */
 // Configrations:
