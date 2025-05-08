@@ -1,0 +1,129 @@
+/* style.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(to bottom right, #fff5e6, #ffe0b2);
+    background-image: url('https://img.freepik.com/free-vector/restaurant-mural-wallpaper_23-2148698592.jpg?semt=ais_hybrid&w=740'); /* Şeffaf pizza desenli arka plan */
+    /* background-repeat: repeat; */
+    background-size: cover;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  h1 {
+    color: #d62828;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  h1 img {
+    height: 40px;
+    vertical-align: middle;
+  }
+  
+  form {
+    background: #ffffffee;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    backdrop-filter: blur(3px);
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #d62828;
+    box-shadow: 0 0 5px #d62828aa;
+    outline: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+  
+  button[type="submit"] {
+    margin-top: 25px;
+    background: #d62828;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background: #a61b1b;
+  }
+  
+  @media (max-width: 600px) {
+    form {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 1.6rem;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .modal img {
+    width: 150px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  

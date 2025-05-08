@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizza Sipariş Formu</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-...uzun-kod..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+</head>
+
+<body>
+  <h1> Pizza Sipariş Formu</h1>
+
+  <form id="pizzaOrderForm">
+    <!-- Kullanıcı ID -->
+    <label for="userId"><i class="fas fa-user"></i> Kullanıcı ID:</label>
+    <input type="text" id="userId" name="userId" required />
+
+    <!-- Pizza Seçimi -->
+    <label for="pizzaId"><i class="fas fa-pizza-slice"></i> Pizza Seçimi:</label>
+    <select id="pizzaId" name="pizzaId" required>
+      <option value="">Pizza Seçiniz</option>
+    </select>
+
+    <!-- Pizza Boyutu -->
+    <label for="size"><i class="fas fa-expand-arrows-alt"></i> Pizza Boyutu:</label>
+    <select id="size" name="size" required>
+      <option value="Small">Küçük</option>
+      <option value="Medium">Orta</option>
+      <option value="Large">Büyük</option>
+      <option value="XLarge">Ekstra Büyük</option>
+    </select>
+
+    <!-- Adet -->
+    <label for="quantity"><i class="fas fa-sort-numeric-up"></i> Adet:</label>
+    <input type="number" id="quantity" name="quantity" min="1" value="1" required />
+
+
+
+    <!-- Toplam Tutar -->
+    <label for="totalPrice"><i class="fas fa-calculator"></i> Toplam Tutar:</label>
+    <input type="number" id="totalPrice" name="totalPrice" readonly />
+
+    <!-- Adres -->
+    <label for="address"><i class="fas fa-map-marker-alt"></i> Adres:</label>
+    <textarea id="address" name="address" required></textarea>
+
+    <!-- Telefon -->
+    <label for="phone"><i class="fas fa-phone"></i> Telefon:</label>
+    <input type="text" id="phone" name="phone" placeholder="10 haneli telefon numarası" required />
+
+    <!-- Ödeme Yöntemi -->
+    <label for="paymentMethod"><i class="fas fa-credit-card"></i> Ödeme Yöntemi:</label>
+    <select id="paymentMethod" name="paymentMethod" required>
+      <option value="Kredi Kartı">Kredi Kartı</option>
+      <option value="Kapıda Ödeme">Kapıda Ödeme</option>
+    </select>
+
+    <!-- Notlar -->
+    <label for="notes"><i class="fas fa-sticky-note"></i> Notlar:</label>
+    <textarea id="notes" name="notes"></textarea>
+    <!-- Fiyat -->
+    <label for="price"><i class="fas fa-tag"></i>Adet Fiyatı:</label>
+    <input type="number" id="price" name="price" readonly required />
+    <button type="submit"><i class="fas fa-paper-plane"></i> Sipariş Ver</button>
+  </form>
+  <div id="successModal" class="modal hidden">
+    <img src="https://education.uoc.ac.in/images/ezgif.com-crop.gif" alt="Başarılı" />
+  </div>
+
+  <script src="script.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</body>
+
+</html>
