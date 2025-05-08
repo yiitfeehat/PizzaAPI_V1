@@ -13,6 +13,8 @@
 const express = require('express')
 const app = express()
 const fs = require('fs');
+const path = require('node:path');
+
 
 /* ------------------------------------------------------- */
 // Required Modules:
@@ -150,7 +152,6 @@ app.all('/', (req, res) => {
 });
 
 // Static Route for images
-const path = require('node:path');
 app.use('/images', express.static(path.join(__dirname, 'uploads')));
 
 
