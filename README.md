@@ -1,6 +1,6 @@
 # PizzaAPI Project 🍕
 
-![Project Demo](client/img/pizzaapi.gif)
+![Project Demo](server/uploads/pizzaapi.gif)
 
 Bu proje, modern web geliştirme prensipleri kullanılarak geliştirilmiş, full-stack bir **Pizza Sipariş ve Yönetim Sistemi**dir. Güçlü bir Node.js backend altyapısı ve kullanıcı dostu bir Vanilla JavaScript frontend arayüzünden oluşur.
 
